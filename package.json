@@ -1,1 +1,13 @@
-
+{
+  "name": "nomad-studio-bali",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "dependencies": {
+    "@anthropic-ai/sdk": "^0.33.0"
+  },
+  "devDependencies": {},
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+  }
