@@ -1,40 +1,41 @@
-const { Anthropic } = require('@anthropic-ai/sdk');
+exports.handler = async (event) => {
+  const cors = {
+    'Access-Control-Allow-Origin': '*',
+    'Access-Control-Allow-Methods': 'POST, OPTIONS',
+    'Access-Control-Allow-Headers': 'Content-Type',
+  };
 
-exports.handler = async (event, context) => {
-  // Hanya izinkan metode POST
-  if (event.httpMethod !== 'POST') {
-    return { statusCode: 405, body: 'Method Not Allowed' };
+  if (event.httpMethod === 'OPTIONS') {
+    return { statusCode: 200, headers: cors, body: '' };
   }
 
   try {
-    const { message } = JSON.parse(event.body);
-    
-    // Mengambil API Key yang sudah di-setting di Netlify Env Variables
-    const anthropic = new Anthropic({
-      apiKey: process.env.ANTHROPIC_API_KEY,
-    });
+    const incoming = JSON.parse(event.body);
+    console.log('Incoming body:', JSON.stringify(incoming));
 
-    // Memanggil API Claude Anthropic
-    const response = await anthropic.messages.create({
-      model: "claude-3-5-sonnet-20241022", // Sesuai versi model Claude
-      max_tokens: 1024,
-      messages: [{ role: "user", content: message }],
-    });
-
-    return {
-      statusCode: 200,
+    const res = await fetch('https://api.anthropic.com/v1/messages', {
+      method: 'POST',
       headers: {
-        "Content-Type": "application/json",
-        "Access-Control-Allow-Origin": "*", // Agar aman dari CORS
+        'content-type': 'application/json',
+        'x-api-key': process.env.ANTHROPIC_API_KEY,
+        'anthropic-version': '2023-06-01',
       },
-      body: JSON.stringify({ reply: response.content[0].text }),
-    };
+      body: JSON.stringify(incoming),
+    });
 
-  } catch (error) {
+    const data = await res.text();
+    console.log('Anthropic response:', data);
+    
+    return {
+      statusCode: res.status,
+      headers: { ...cors, 'content-type': 'application/json' },
+      body: data,
+    };
+  } catch (err) {
     return {
       statusCode: 500,
-      body: JSON.stringify({ error: error.message }),
+      headers: cors,
+      body: JSON.stringify({ error: err.message }),
     };
   }
 };
-
