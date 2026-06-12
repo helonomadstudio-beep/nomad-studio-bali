@@ -1,0 +1,1870 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Nomad Studio Bali — We Bring the Studio to You</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #f5f0e8;
+        --dark: #141210;
+        --warm: #1c1915;
+        --gold: #c8a96e;
+        --gold-light: #e8c98a;
+        --muted: #8a8070;
+        --border: rgba(200, 169, 110, 0.2);
+        --amber: #d4882e;
+        --terracotta: #c4614a;
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--dark);
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        line-height: 1.6;
+        overflow-x: hidden;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 4rem;
+        border-bottom: 1px solid var(--border);
+        background: rgba(20, 18, 16, 0.92);
+        backdrop-filter: blur(12px);
+        height: 72px;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .nav-logo img {
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
+      }
+      .nav-logo-text {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        letter-spacing: 0.12em;
+        color: var(--cream);
+        line-height: 1;
+      }
+      .nav-logo-text span {
+        color: var(--gold);
+      }
+      .nav-links {
+        display: flex;
+        gap: 2.5rem;
+        list-style: none;
+      }
+      .nav-links a {
+        color: var(--muted);
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-links a:hover {
+        color: var(--cream);
+      }
+      .nav-cta {
+        background: var(--gold);
+        color: var(--dark);
+        padding: 0.6rem 1.5rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .nav-cta:hover {
+        background: var(--gold-light);
+      }
+
+      /* HAMBURGER */
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 101;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--cream);
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+      .nav-hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav-hamburger.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .nav-hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      /* HERO */
+      .hero {
+        min-height: 100vh;
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        align-items: center;
+        padding: 8rem 4rem 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .hero::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 70% 50%,
+          rgba(200, 169, 110, 0.06) 0%,
+          transparent 60%
+        );
+        pointer-events: none;
+      }
+      .hero-tag {
+        display: inline-block;
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        border: 1px solid var(--border);
+        padding: 0.4rem 1rem;
+        margin-bottom: 2rem;
+      }
+      .hero h1 {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(4rem, 7vw, 7.5rem);
+        line-height: 0.92;
+        letter-spacing: 0.02em;
+        margin-bottom: 1.5rem;
+      }
+      .hero h1 em {
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        color: var(--gold);
+        display: block;
+      }
+      .hero-sub {
+        font-size: 1.05rem;
+        color: var(--muted);
+        max-width: 420px;
+        margin-bottom: 2.5rem;
+        line-height: 1.7;
+      }
+      .hero-btns {
+        display: flex;
+        gap: 1rem;
+        flex-wrap: wrap;
+      }
+      .btn-primary {
+        background: var(--gold);
+        color: var(--dark);
+        padding: 1rem 2.2rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-decoration: none;
+        transition: all 0.2s;
+        border: none;
+        cursor: pointer;
+      }
+      .btn-primary:hover {
+        background: var(--gold-light);
+        transform: translateY(-1px);
+      }
+      .btn-outline {
+        border: 1px solid var(--border);
+        color: var(--cream);
+        padding: 1rem 2.2rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 400;
+        text-decoration: none;
+        transition: all 0.2s;
+      }
+      .btn-outline:hover {
+        border-color: var(--gold);
+        color: var(--gold);
+      }
+      .hero-visual {
+        position: relative;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding-left: 3rem;
+      }
+      .hero-card {
+        background: var(--warm);
+        border: 1px solid var(--border);
+        padding: 3rem;
+        position: relative;
+        width: 100%;
+        max-width: 420px;
+      }
+      .hero-card::before {
+        content: "";
+        position: absolute;
+        top: -1px;
+        left: 3rem;
+        right: 3rem;
+        height: 2px;
+        background: linear-gradient(
+          90deg,
+          transparent,
+          var(--gold),
+          transparent
+        );
+      }
+      .hero-card-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.5rem;
+      }
+      .hero-card h3 {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.6rem;
+        margin-bottom: 0.8rem;
+        line-height: 1.2;
+      }
+      .hero-card p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.7;
+        margin-bottom: 1.5rem;
+      }
+      .process-steps {
+        display: flex;
+        flex-direction: column;
+        gap: 0.8rem;
+      }
+      .step {
+        display: flex;
+        align-items: flex-start;
+        gap: 1rem;
+      }
+      .step-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.2rem;
+        color: var(--gold);
+        min-width: 1.5rem;
+        line-height: 1;
+        margin-top: 0.1rem;
+      }
+      .step-text {
+        font-size: 0.85rem;
+        color: var(--muted);
+        line-height: 1.5;
+      }
+      .step-text strong {
+        color: var(--cream);
+        font-weight: 400;
+      }
+
+      /* STATS */
+      .stats {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        border-top: 1px solid var(--border);
+        border-bottom: 1px solid var(--border);
+        margin: 0 4rem;
+      }
+      .stat {
+        padding: 3rem 2rem;
+        border-right: 1px solid var(--border);
+        text-align: center;
+      }
+      .stat:last-child {
+        border-right: none;
+      }
+      .stat-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 3.5rem;
+        color: var(--gold);
+        line-height: 1;
+        display: block;
+      }
+      .stat-label {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--muted);
+        margin-top: 0.5rem;
+      }
+
+      /* SECTION COMMON */
+      section {
+        padding: 6rem 4rem;
+      }
+      .section-tag {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.2rem;
+        display: block;
+      }
+      .section-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(2.5rem, 4vw, 4rem);
+        line-height: 1;
+        margin-bottom: 1.5rem;
+      }
+      .section-title em {
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        color: var(--gold);
+      }
+      .section-sub {
+        color: var(--muted);
+        font-size: 1rem;
+        max-width: 520px;
+        line-height: 1.7;
+      }
+      .divider {
+        width: 40px;
+        height: 1px;
+        background: var(--gold);
+        margin-bottom: 1.5rem;
+      }
+
+      /* WHY */
+      .why {
+        background: var(--warm);
+      }
+      .why-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 5rem;
+        align-items: center;
+        margin-top: 4rem;
+      }
+      .why-list {
+        display: flex;
+        flex-direction: column;
+        gap: 2rem;
+      }
+      .why-item {
+        display: flex;
+        gap: 1.5rem;
+      }
+      .why-icon {
+        width: 40px;
+        height: 40px;
+        min-width: 40px;
+        border: 1px solid var(--border);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        color: var(--gold);
+        font-size: 1rem;
+        margin-top: 0.2rem;
+      }
+      .why-item h4 {
+        font-size: 1rem;
+        font-weight: 500;
+        margin-bottom: 0.4rem;
+        color: var(--cream);
+      }
+      .why-item p {
+        color: var(--muted);
+        font-size: 0.9rem;
+        line-height: 1.6;
+      }
+      .why-visual {
+        border: 1px solid var(--border);
+        padding: 3rem;
+        position: relative;
+        background: var(--dark);
+      }
+      .why-visual::after {
+        content: '"';
+        font-family: "DM Serif Display", serif;
+        font-size: 8rem;
+        color: var(--gold);
+        opacity: 0.15;
+        position: absolute;
+        top: -1rem;
+        right: 1rem;
+        line-height: 1;
+      }
+      .why-quote {
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        font-size: 1.3rem;
+        line-height: 1.5;
+        margin-bottom: 1.5rem;
+        color: var(--cream);
+      }
+      .why-quote-attr {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+
+      /* SERVICES */
+      .services-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1px;
+        background: var(--border);
+        margin-top: 4rem;
+        border: 1px solid var(--border);
+      }
+      .service-card {
+        background: var(--dark);
+        padding: 2.5rem 2rem;
+        transition: background 0.3s;
+        cursor: default;
+      }
+      .service-card:hover {
+        background: var(--warm);
+      }
+      .service-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.5rem;
+        color: var(--border);
+        display: block;
+        margin-bottom: 1rem;
+        transition: color 0.3s;
+      }
+      .service-card:hover .service-num {
+        color: var(--gold);
+        opacity: 0.4;
+      }
+      .service-card h3 {
+        font-size: 1.05rem;
+        font-weight: 500;
+        margin-bottom: 0.8rem;
+        color: var(--cream);
+      }
+      .service-card p {
+        color: var(--muted);
+        font-size: 0.85rem;
+        line-height: 1.65;
+      }
+
+      /* HOW */
+      .how {
+        background: var(--warm);
+      }
+      .how-steps {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        margin-top: 4rem;
+        border: 1px solid var(--border);
+      }
+      .how-step {
+        padding: 2.5rem 2rem;
+        border-right: 1px solid var(--border);
+      }
+      .how-step:last-child {
+        border-right: none;
+      }
+      .how-step-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 4rem;
+        color: var(--gold);
+        opacity: 0.2;
+        line-height: 1;
+        margin-bottom: 1rem;
+        display: block;
+      }
+      .how-step h4 {
+        font-size: 0.95rem;
+        font-weight: 500;
+        margin-bottom: 0.6rem;
+        color: var(--cream);
+      }
+      .how-step p {
+        color: var(--muted);
+        font-size: 0.83rem;
+        line-height: 1.6;
+      }
+
+      /* PRICING */
+      .pricing-tabs {
+        display: flex;
+        margin-top: 3rem;
+        border: 1px solid var(--border);
+        width: fit-content;
+      }
+      .pricing-tab {
+        padding: 0.7rem 2rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        cursor: pointer;
+        transition: all 0.2s;
+        color: var(--muted);
+        border: none;
+        background: transparent;
+        font-family: "DM Sans", sans-serif;
+        font-weight: 400;
+        border-right: 1px solid var(--border);
+      }
+      .pricing-tab:last-child {
+        border-right: none;
+      }
+      .pricing-tab.active {
+        background: var(--gold);
+        color: var(--dark);
+        font-weight: 500;
+      }
+      .pricing-tab:hover:not(.active) {
+        color: var(--cream);
+      }
+      .pricing-panel {
+        display: none;
+      }
+      .pricing-panel.active {
+        display: block;
+      }
+      .pricing-grid {
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        margin-top: 2rem;
+      }
+      .pricing-card {
+        border: 1px solid var(--border);
+        padding: 2.5rem 2rem;
+        position: relative;
+        transition: border-color 0.3s;
+      }
+      .pricing-card:hover {
+        border-color: var(--gold);
+      }
+      .pricing-card.featured {
+        border-color: var(--gold);
+        background: var(--warm);
+      }
+      .pricing-badge {
+        position: absolute;
+        top: -1px;
+        left: 50%;
+        transform: translateX(-50%);
+        background: var(--gold);
+        color: var(--dark);
+        font-size: 0.65rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        padding: 0.3rem 1rem;
+        font-weight: 500;
+        white-space: nowrap;
+      }
+      .pricing-label {
+        font-size: 0.7rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1rem;
+        display: block;
+      }
+      .pricing-card h3 {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.5rem;
+        margin-bottom: 0.5rem;
+      }
+      .pricing-card > p {
+        color: var(--muted);
+        font-size: 0.85rem;
+        margin-bottom: 1.5rem;
+      }
+      .pricing-price {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 2.8rem;
+        color: var(--cream);
+        line-height: 1;
+        margin-bottom: 0.3rem;
+      }
+      .pricing-price span {
+        font-family: "DM Sans", sans-serif;
+        font-size: 0.8rem;
+        color: var(--muted);
+        font-weight: 300;
+      }
+      .pricing-note {
+        font-size: 0.75rem;
+        color: var(--muted);
+        margin-bottom: 2rem;
+      }
+      .pricing-features {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+      }
+      .pricing-features li {
+        font-size: 0.85rem;
+        color: var(--muted);
+        padding-left: 1.2rem;
+        position: relative;
+      }
+      .pricing-features li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+        font-size: 0.7rem;
+      }
+      .pricing-features li.highlight {
+        color: var(--cream);
+      }
+      .pricing-addons {
+        margin-top: 2rem;
+        border: 1px solid var(--border);
+        padding: 2rem 2.5rem;
+        display: grid;
+        grid-template-columns: repeat(3, 1fr);
+        gap: 1.5rem;
+        align-items: start;
+      }
+      .addon-label {
+        font-size: 0.65rem;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0;
+        display: block;
+        grid-column: 1 / -1;
+      }
+      .addon-item h5 {
+        font-size: 0.85rem;
+        font-weight: 500;
+        color: var(--cream);
+        margin-bottom: 0.2rem;
+      }
+      .addon-item p {
+        font-size: 0.78rem;
+        color: var(--muted);
+      }
+      .addon-price {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        color: var(--gold);
+        margin-top: 0.3rem;
+      }
+
+      /* TESTIMONIALS */
+      .testimonials {
+        background: var(--warm);
+      }
+      .testi-grid {
+        display: grid;
+        grid-template-columns: repeat(2, 1fr);
+        gap: 1.5rem;
+        margin-top: 4rem;
+      }
+      .testi-card {
+        border: 1px solid var(--border);
+        padding: 2.5rem;
+      }
+      .testi-stars {
+        color: var(--gold);
+        font-size: 0.75rem;
+        margin-bottom: 1.2rem;
+      }
+      .testi-text {
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        font-size: 1.05rem;
+        line-height: 1.6;
+        color: var(--cream);
+        margin-bottom: 1.5rem;
+      }
+      .testi-name {
+        font-size: 0.75rem;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--gold);
+      }
+      .testi-role {
+        font-size: 0.78rem;
+        color: var(--muted);
+        margin-top: 0.2rem;
+      }
+
+      /* CTA */
+      .cta-section {
+        text-align: center;
+        padding: 8rem 4rem;
+        position: relative;
+        overflow: hidden;
+      }
+      .cta-section::before {
+        content: "";
+        position: absolute;
+        inset: 0;
+        background: radial-gradient(
+          ellipse at 50% 50%,
+          rgba(200, 169, 110, 0.07) 0%,
+          transparent 65%
+        );
+        pointer-events: none;
+      }
+      .cta-section .section-title {
+        font-size: clamp(3rem, 6vw, 6rem);
+      }
+      .cta-section .section-sub {
+        margin: 0 auto 3rem;
+        text-align: center;
+        max-width: 460px;
+      }
+      .cta-btns {
+        display: flex;
+        gap: 1rem;
+        justify-content: center;
+        flex-wrap: wrap;
+      }
+
+      /* FAQ */
+      .faq {
+        background: var(--warm);
+      }
+      .faq-grid {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 2rem;
+        margin-top: 4rem;
+      }
+      .faq-item {
+        border-bottom: 1px solid var(--border);
+        padding-bottom: 1.5rem;
+      }
+      .faq-item h4 {
+        font-size: 0.95rem;
+        font-weight: 500;
+        color: var(--cream);
+        margin-bottom: 0.7rem;
+      }
+      .faq-item p {
+        color: var(--muted);
+        font-size: 0.87rem;
+        line-height: 1.65;
+      }
+
+      /* FOOTER */
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 3rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 72px;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .footer-brand img {
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
+      }
+      .footer-logo-text {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.1rem;
+        letter-spacing: 0.12em;
+        color: var(--cream);
+      }
+      .footer-logo-text span {
+        color: var(--gold);
+      }
+      .footer-links {
+        display: flex;
+        gap: 2rem;
+      }
+      .footer-links a {
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .footer-links a:hover {
+        color: var(--gold);
+      }
+      .footer-copy {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      /* ANIMATIONS */
+      @keyframes fadeUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
+        }
+        to {
+          opacity: 1;
+          transform: translateY(0);
+        }
+      }
+      .hero-left > * {
+        animation: fadeUp 0.8s ease forwards;
+        opacity: 0;
+      }
+      .hero-left > *:nth-child(1) {
+        animation-delay: 0.1s;
+      }
+      .hero-left > *:nth-child(2) {
+        animation-delay: 0.2s;
+      }
+      .hero-left > *:nth-child(3) {
+        animation-delay: 0.35s;
+      }
+      .hero-left > *:nth-child(4) {
+        animation-delay: 0.5s;
+      }
+      .hero-visual {
+        animation: fadeUp 1s 0.4s ease forwards;
+        opacity: 0;
+      }
+
+      /* MOBILE */
+      @media (max-width: 768px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+        .nav-links {
+          display: none;
+        }
+        .nav-hamburger {
+          display: flex;
+        }
+
+        /* Mobile nav open state */
+        .nav-links.open {
+          display: flex;
+          flex-direction: column;
+          position: fixed;
+          top: 61px;
+          left: 0;
+          right: 0;
+          background: rgba(20, 18, 16, 0.97);
+          backdrop-filter: blur(12px);
+          padding: 1.5rem;
+          gap: 0;
+          border-bottom: 1px solid var(--border);
+          z-index: 99;
+        }
+        .nav-links.open li {
+          border-bottom: 1px solid var(--border);
+        }
+        .nav-links.open li:last-child {
+          border-bottom: none;
+        }
+        .nav-links.open a {
+          display: block;
+          padding: 1rem 0;
+          font-size: 0.85rem;
+          color: var(--cream);
+        }
+
+        .hero {
+          grid-template-columns: 1fr;
+          padding: 7rem 1.5rem 3rem;
+          gap: 3rem;
+        }
+        .hero-visual {
+          padding-left: 0;
+        }
+        section {
+          padding: 4rem 1.5rem;
+        }
+        .stats {
+          margin: 0 1.5rem;
+          grid-template-columns: 1fr;
+        }
+        .stat {
+          border-right: none;
+          border-bottom: 1px solid var(--border);
+        }
+        .stat:last-child {
+          border-bottom: none;
+        }
+        .why-grid,
+        .testi-grid,
+        .faq-grid {
+          grid-template-columns: 1fr;
+          gap: 2rem;
+        }
+        .services-grid {
+          grid-template-columns: 1fr;
+        }
+        .how-steps {
+          grid-template-columns: 1fr 1fr;
+        }
+        .pricing-grid {
+          grid-template-columns: 1fr;
+        }
+        .pricing-addons {
+          grid-template-columns: 1fr;
+        }
+        footer {
+          flex-direction: column;
+          gap: 1.5rem;
+          text-align: center;
+          padding: 2rem 1.5rem;
+        }
+        .footer-links {
+          flex-wrap: wrap;
+          justify-content: center;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a class="nav-logo" href="#">
+        <img src="nomad-logo.png" alt="Nomad Studio Bali Logo" />
+        <span class="nav-logo-text">NOMAD <span>STUDIO</span> BALI</span>
+      </a>
+      <ul class="nav-links" id="nav-links">
+        <li><a href="#services">Services</a></li>
+        <li><a href="#how">How It Works</a></li>
+        <li><a href="#pricing">Pricing</a></li>
+        <li><a href="#faq">FAQ</a></li>
+        <li><a href="booking-policy.html">Booking Policy</a></li>
+        <li><a href="#contact">Contact</a></li>
+      </ul>
+      <a class="nav-cta" href="https://wa.me/6282168889585" target="_blank"
+        >Book Now</a
+      >
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <section class="hero">
+      <div class="hero-left">
+        <div class="hero-tag">📍 Bali's Premier Mobile Studio</div>
+        <h1>Studio Quality.<br />Your<br /><em>Location.</em></h1>
+        <p class="hero-sub">
+          We bring a full professional studio — cameras, lighting, audio —
+          directly to your villa or location anywhere in Bali. You focus on your
+          content. We handle everything else.
+        </p>
+        <div class="hero-btns">
+          <a
+            class="btn-primary"
+            href="https://wa.me/6282168889585"
+            target="_blank"
+            >Book a Session</a
+          >
+          <a class="btn-outline" href="#how">See How It Works</a>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="hero-card">
+          <p class="hero-card-label">What your session looks like</p>
+          <h3>We set up. You show up.</h3>
+          <p>
+            No commute. No unfamiliar studio. No stress. We arrive, build the
+            studio, and hand you a professional set — ready to record.
+          </p>
+          <div class="process-steps">
+            <div class="step">
+              <span class="step-num">1</span>
+              <p class="step-text">
+                <strong>Book via WhatsApp</strong><br />Tell us your date,
+                location & content type
+              </p>
+            </div>
+            <div class="step">
+              <span class="step-num">2</span>
+              <p class="step-text">
+                <strong>We arrive & build the studio</strong><br />Full setup in
+                60–90 min at your location
+              </p>
+            </div>
+            <div class="step">
+              <span class="step-num">3</span>
+              <p class="step-text">
+                <strong>You record, we manage</strong><br />Cameras, audio,
+                lighting — all handled by us
+              </p>
+            </div>
+            <div class="step">
+              <span class="step-num">4</span>
+              <p class="step-text">
+                <strong>We pack down & deliver</strong><br />Raw footage or
+                edited files sent to you
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <div class="stats">
+      <div class="stat">
+        <span class="stat-num">100+</span>
+        <p class="stat-label">Satisfied Clients in Bali</p>
+      </div>
+      <div class="stat">
+        <span class="stat-num">200%</span>
+        <p class="stat-label">Zero Stress, No Commute</p>
+      </div>
+      <div class="stat">
+        <span class="stat-num">100%</span>
+        <p class="stat-label">Mobile — We Come to You</p>
+      </div>
+    </div>
+
+    <section class="why" id="why">
+      <span class="section-tag">Why Nomad Studio</span>
+      <h2 class="section-title">
+        The Studio Without<br /><em>The Commute</em>
+      </h2>
+      <div class="why-grid">
+        <div class="why-list">
+          <div class="why-item">
+            <div class="why-icon">⚡</div>
+            <div>
+              <h4>No Logistics, No Stress</h4>
+              <p>
+                Forget driving across Bali, finding parking, or adjusting to an
+                unfamiliar space. We come to you — you arrive to a ready studio.
+              </p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🎯</div>
+            <div>
+              <h4>Your Space = Better Performance</h4>
+              <p>
+                Recording in your own villa means you're relaxed and in your
+                element. Comfortable environment leads to better, more natural
+                content.
+              </p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">📸</div>
+            <div>
+              <h4>Broadcast-Quality Anywhere</h4>
+              <p>
+                Multi-camera setup, professional LED lighting rigs, and high-end
+                audio — the same gear you'd find in top studios, delivered to
+                your door.
+              </p>
+            </div>
+          </div>
+          <div class="why-item">
+            <div class="why-icon">🤝</div>
+            <div>
+              <h4>Transparent, No Surprises</h4>
+              <p>
+                Clear pricing, clear session structure, clear deliverables. You
+                know exactly what you're getting — and what it costs — before we
+                arrive.
+              </p>
+            </div>
+          </div>
+        </div>
+        <div class="why-visual">
+          <p class="why-quote">
+            "I didn't have to go anywhere. The team set up everything in my
+            villa in under an hour — the result looked more professional than
+            studios I've paid twice as much for."
+          </p>
+          <p class="why-quote-attr">— Course Creator, Canggu</p>
+        </div>
+      </div>
+    </section>
+
+    <section id="services">
+      <span class="section-tag">What We Do</span>
+      <h2 class="section-title">One Setup.<br /><em>Every Format.</em></h2>
+      <p class="section-sub">
+        From solo podcasts to full-day masterclass shoots — we configure the
+        studio to exactly what your content needs.
+      </p>
+      <div class="services-grid">
+        <div class="service-card">
+          <span class="service-num">01</span>
+          <h3>Podcast Studio</h3>
+          <p>
+            Full podcast setup with professional microphones, audio interface,
+            and multi-camera. Solo or multi-guest formats — we configure for
+            both.
+          </p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">02</span>
+          <h3>Masterclass & Online Course</h3>
+          <p>
+            Multi-camera setup purpose-built for course creators and coaches.
+            Teleprompter available. Perfect for recording full modules in one
+            efficient session.
+          </p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">03</span>
+          <h3>VSL & Talking Head Video</h3>
+          <p>
+            Clean, professional setup optimized for sales pages, landing pages,
+            and direct-to-camera content. Simple, fast, effective.
+          </p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">04</span>
+          <h3>Interview & Guest Format</h3>
+          <p>
+            Multi-camera setup for conversations and interviews. Proper framing,
+            matched lighting for both subjects, clean audio — broadcast ready.
+          </p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">05</span>
+          <h3>Video Editing</h3>
+          <p>
+            Post-production for all formats. Podcast cuts, course modules,
+            short-form reels, and full productions — with revisions included.
+          </p>
+        </div>
+        <div class="service-card">
+          <span class="service-num">06</span>
+          <h3>Webinar & Live Stream</h3>
+          <p>
+            Full live streaming setup with professional camera, audio, and
+            reliable stream output — broadcast to any platform from your villa.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section class="how" id="how">
+      <span class="section-tag">The Process</span>
+      <h2 class="section-title">Four Steps to<br /><em>Ready to Record</em></h2>
+      <p class="section-sub">
+        From your first message to cameras rolling — here's exactly how a Nomad
+        Studio session works.
+      </p>
+      <div class="how-steps">
+        <div class="how-step">
+          <span class="how-step-num">01</span>
+          <h4>Reach Out on WhatsApp</h4>
+          <p>
+            Send us your date, villa location, and what you want to record. We
+            confirm availability same day and discuss your setup needs.
+          </p>
+        </div>
+        <div class="how-step">
+          <span class="how-step-num">02</span>
+          <h4>We Confirm & Prepare</h4>
+          <p>
+            Once confirmed, we send you a booking confirmation with all session
+            details, timing, and our booking policy — no surprises on the day.
+          </p>
+        </div>
+        <div class="how-step">
+          <span class="how-step-num">03</span>
+          <h4>We Arrive & Build</h4>
+          <p>
+            Our 2-person team arrives and sets up the complete studio at your
+            location. Full professional setup takes 60–90 minutes — included in
+            your session.
+          </p>
+        </div>
+        <div class="how-step">
+          <span class="how-step-num">04</span>
+          <h4>You Record, We Deliver</h4>
+          <p>
+            You focus on your content. We handle every technical aspect. Footage
+            is delivered after the session — raw files or edited, your choice.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <section id="pricing">
+      <span class="section-tag">Investment</span>
+      <h2 class="section-title">Clear Pricing.<br /><em>No Surprises.</em></h2>
+      <p class="section-sub">
+        All packages include a 2-person professional team, full equipment, and
+        setup & packdown at your location anywhere in Bali.
+      </p>
+
+      <div class="pricing-tabs">
+        <button class="pricing-tab active" onclick="switchTab('podcast', this)">
+          Podcast / Interview
+        </button>
+        <button class="pricing-tab" onclick="switchTab('vsl', this)">
+          VSL / Solo Video
+        </button>
+      </div>
+
+      <div class="pricing-panel active" id="tab-podcast">
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <span class="pricing-label">Starter</span>
+            <h3>Podcast Starter</h3>
+            <p>Setup for two speakers · Great for your first episode or a focused interview session</p>
+            <div class="pricing-price">4.990.000 IDR <span>/ session</span></div>
+            <p class="pricing-note">
+              3-hour session · ~2 hrs production time
+            </p>
+            <ul class="pricing-features">
+              <li>Three Sony 4K (10-bit) camera setup</li>
+              <li>Professional studio lighting kit</li>
+              <li>Two RODE podcast microphone</li>
+              <li>Creative Director and camera operator</li>
+              <li>Setup and packdown included</li>
+            </ul>
+          </div>
+          <div class="pricing-card">
+            <span class="pricing-label">Standard</span>
+            <h3>Podcast Standard</h3>
+            <p>Setup for two speakers · The go-to for regular podcast hosts and content creators</p>
+            <div class="pricing-price">7.490.000 IDR <span>/ session</span></div>
+            <p class="pricing-note">
+              5-hour session · ~4 hrs production time
+            </p>
+            <ul class="pricing-features">
+              <li>Three Sony 4K (10-bit) camera setup</li>
+              <li>Professional studio lighting kit</li>
+              <li>Two RODE podcast microphone</li>
+              <li>Creative Director and camera operator</li>
+              <li>Setup and packdown included</li>
+            </ul>
+          </div>
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Most Popular</div>
+            <span class="pricing-label">Pro</span>
+            <h3>Podcast Pro</h3>
+            <p>Setup for two speakers · Batch record multiple episodes or a full content library</p>
+            <div class="pricing-price">9.490.000 IDR <span>/ session</span></div>
+            <p class="pricing-note">
+              8-hour session · ~7 hrs production time
+            </p>
+            <ul class="pricing-features">
+              <li>Three Sony 4K (10-bit) camera setup</li>
+              <li>Professional studio lighting kit</li>
+              <li>Two RODE podcast microphone</li>
+              <li>Creative Director and camera operator</li>
+              <li>Setup and packdown included</li>
+              <li class="highlight">30 min lunch break included</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-addons">
+          <span class="addon-label">Add-Ons</span>
+          <div class="addon-item">
+            <h5>Extra Time</h5>
+            <p>Per 30 minutes</p>
+            <div class="addon-price">+ 550.000 IDR</div>
+          </div>
+          <div class="addon-item">
+            <h5>Additional Speaker</h5>
+            <p>Camera and microphone included</p>
+            <div class="addon-price">+ 1.500.000 IDR</div>
+          </div>
+          <div class="addon-item">
+            <h5>Night Surcharge</h5>
+            <p>Sessions continuing past 18.00</p>
+            <div class="addon-price">+500K flat</div>
+          </div>
+        </div>
+      </div>
+
+  
+      <div class="pricing-panel" id="tab-vsl">
+        <div class="pricing-grid">
+          <div class="pricing-card">
+            <span class="pricing-label">Starter</span>
+            <h3>VSL Starter</h3>
+            <p>Perfect for a focused first shoot or a single piece of content</p>
+            <div class="pricing-price">3.799.000 IDR <span>/ session</span></div>
+            <p class="pricing-note">
+              3-hour session · ~2 hrs production time · Raw footage
+            </p>
+            <ul class="pricing-features">
+              <li>2-camera setup</li>
+              <li>Professional LED lighting</li>
+              <li>Professional microphone</li>
+              <li>2-person crew on-site</li>
+              <li>Setup &amp; packdown included</li>
+              <li>Raw footage delivered</li>
+            </ul>
+          </div>
+          <div class="pricing-card featured">
+            <div class="pricing-badge">Most Popular</div>
+            <span class="pricing-label">Standard</span>
+            <h3>VSL Standard</h3>
+            <p>Ideal for course creators and business owners with more to record</p>
+            <div class="pricing-price">5.790.000 IDR <span>/ session</span></div>
+            <p class="pricing-note">
+              5-hour session · ~4 hrs production time · Raw footage
+            </p>
+            <ul class="pricing-features">
+              <li>2-camera setup</li>
+              <li>Professional LED lighting</li>
+              <li>Professional microphone</li>
+              <li>2-person crew on-site</li>
+              <li>Setup &amp; packdown included</li>
+              <li>Raw footage delivered</li>
+              <li class="highlight">More production time — batch your content</li>
+            </ul>
+          </div>
+          <div class="pricing-card">
+            <span class="pricing-label">Pro</span>
+            <h3>VSL Full Day</h3>
+            <p>Maximum output — record everything you need in one full day</p>
+            <div class="pricing-price">6.899.000 IDR <span>/ session</span></div>
+            <p class="pricing-note">
+              8-hour session · ~7 hrs production time · Raw footage
+            </p>
+            <ul class="pricing-features">
+              <li>2-camera setup</li>
+              <li>Professional LED lighting</li>
+              <li>Professional microphone</li>
+              <li>2-person crew on-site</li>
+              <li>Setup &amp; packdown included</li>
+              <li>Raw footage delivered</li>
+              <li class="highlight">Best value per hour</li>
+              <li class="highlight">30 min lunch break included</li>
+            </ul>
+          </div>
+        </div>
+        <div class="pricing-addons">
+          <span class="addon-label">Add-Ons</span>
+          <div class="addon-item">
+            <h5>Extra Time</h5>
+            <p>Per 30 minutes</p>
+            <div class="addon-price">+ 550.000 IDR</div>
+          </div>
+          <div class="addon-item">
+            <h5>Night Surcharge</h5>
+            <p>Sessions continuing past 18.00</p>
+            <div class="addon-price">+ 500.000 IDR flat</div>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <section class="testimonials">
+      <span class="section-tag">Client Stories</span>
+      <h2 class="section-title">What Clients<br /><em>Say</em></h2>
+      <div class="testi-grid">
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "I was skeptical — I thought a mobile studio would compromise on
+            quality. I was completely wrong. The setup looked more professional
+            than studios I've paid twice as much for."
+          </p>
+          <p class="testi-name">— Rebecca Antonucci</p>
+          <p class="testi-role">Podcast Host, Canggu</p>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "Recording my online course from my own villa was a game changer. I
+            was relaxed, focused, and we got through far more material than
+            expected. Worth every rupiah."
+          </p>
+          <p class="testi-name">— Wanner Aarts</p>
+          <p class="testi-role">Online Course Creator, Seminyak</p>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "The team was incredibly professional. They set up everything in
+            under an hour and knew exactly how to get the lighting right for my
+            VSL. The footage was exactly what I needed."
+          </p>
+          <p class="testi-name">— Glenn Nieuwenhuis</p>
+          <p class="testi-role">Business Owner, Canggu</p>
+        </div>
+        <div class="testi-card">
+          <div class="testi-stars">★★★★★</div>
+          <p class="testi-text">
+            "As a Dutch expat I've tried several studios in Bali. Nomad Studio
+            is different — they come to you, the quality is excellent, and the
+            communication is always fast and clear."
+          </p>
+          <p class="testi-name">— Niels van der Linde</p>
+          <p class="testi-role">Content Creator, Ubud</p>
+        </div>
+      </div>
+    </section>
+
+    <section class="cta-section" id="contact">
+      <span class="section-tag">Ready to Record?</span>
+      <h2 class="section-title">
+        Your Studio.<br />Your Villa.<br /><em>Your Terms.</em>
+      </h2>
+      <p class="section-sub">
+        Message us on WhatsApp and we'll get back to you within a few hours to
+        plan your session.
+      </p>
+      <div class="cta-btns">
+        <a
+          class="btn-primary"
+          href="https://wa.me/6282168889585"
+          target="_blank"
+          >WhatsApp Us Now</a
+        >
+        <a class="btn-outline" href="mailto:helonomadstudio@gmail.com"
+          >Send an Email</a
+        >
+      </div>
+    </section>
+
+    <section class="faq" id="faq">
+      <span class="section-tag">FAQ</span>
+      <h2 class="section-title">Common<br /><em>Questions</em></h2>
+      <div class="faq-grid">
+        <div class="faq-item">
+          <h4>What does "session time" include — is it all shooting?</h4>
+          <p>
+            Session time is the total time we are at your location. It includes
+            60–90 minutes of professional setup & packdown, leaving the
+            remaining time as active production time. This is clearly
+            communicated at booking — no surprises on the day.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>Where in Bali do you operate?</h4>
+          <p>
+            We cover Canggu, Seminyak, Kuta, Ubud, Uluwatu, Sanur, and nearby
+            areas. A travel surcharge may apply for locations further out.
+            Contact us to confirm your area before booking.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>What if my session runs over time?</h4>
+          <p>
+            Additional time is billed at IDR 550,000 per 30 minutes. We'll give you a heads-up before the session ends so you can decide whether to extend — no hidden charges.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>What if I finish early and don't use all my booked time?</h4>
+          <p>
+            Unused session time is non-transferable and non-refundable — the
+            time was reserved exclusively for you. Remaining time can still be
+            used on-site: reviewing footage, reshoots, or planning your next
+            shoot.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>Is there a charge for evening sessions?</h4>
+          <p>
+            Yes — a flat night surcharge of IDR 500,000 applies if your session continues past 18.00. This is always disclosed at booking, never added as a surprise at the end.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>Do you provide editing services?</h4>
+          <p>
+            Editing is available as a separate service and is not included in any package — all sessions deliver raw footage by default. We offer dedicated editing packages to suit different needs; ask our team for details and pricing.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>How much space do I need at my villa?</h4>
+          <p>
+            Any reasonably sized room works. We've successfully set up in living
+            rooms, bedrooms, and terraces. We assess the space on arrival and
+            adapt to what you have.
+          </p>
+        </div>
+        <div class="faq-item">
+          <h4>Can I book recurring monthly sessions?</h4>
+          <p>
+            Absolutely — monthly packages are our most popular option for
+            podcast hosts and course creators who record regularly. Contact us
+            to discuss a recurring arrangement.
+          </p>
+        </div>
+      </div>
+    </section>
+
+    <footer>
+      <div class="footer-brand">
+        <img src="nomad-logo.png" alt="Nomad Studio Bali" />
+        <span class="footer-logo-text">NOMAD <span>STUDIO</span> BALI</span>
+      </div>
+      <div class="footer-links">
+        <a href="#services">Services</a>
+        <a href="#how">How It Works</a>
+        <a href="#pricing">Pricing</a>
+        <a href="booking-policy.html">Booking Policy</a>
+        <a href="https://wa.me/6282168889585" target="_blank">WhatsApp</a>
+      </div>
+      <p class="footer-copy">© 2026 Nomad Studio Bali</p>
+    </footer>
+
+    <!-- ===== NOMAD STUDIO AI CHATBOT ===== -->
+    <style>
+      #nomad-chat-toggle {
+        position: fixed; bottom: 24px; right: 24px;
+        width: 56px; height: 56px; border-radius: 50%;
+        background: var(--gold); border: none; cursor: pointer;
+        display: flex; align-items: center; justify-content: center;
+        box-shadow: 0 4px 20px rgba(200,169,110,0.4);
+        z-index: 9999; transition: transform 0.2s, background 0.2s;
+        animation: nc-attention 1s ease-in-out 0.5s 3;
+      }
+      @keyframes nc-attention {
+        0%   { transform: scale(1); box-shadow: 0 4px 20px rgba(200,169,110,0.4); }
+        30%  { transform: scale(1.2); box-shadow: 0 6px 32px rgba(200,169,110,0.7); }
+        60%  { transform: scale(0.95); }
+        100% { transform: scale(1); box-shadow: 0 4px 20px rgba(200,169,110,0.4); }
+      }
+      #nomad-chat-toggle:hover { transform: scale(1.08); }
+      #nomad-chat-toggle svg { width: 26px; height: 26px; fill: var(--dark); }
+      #nomad-chat-toggle .nc-close { display: none; }
+      #nomad-chat-toggle.open .nc-chat { display: none; }
+      #nomad-chat-toggle.open .nc-close { display: block; }
+      #nomad-chat-toggle.open { animation: none; }
+      #nomad-chat-toggle::after {
+        content: ''; position: absolute; top: 2px; right: 2px;
+        width: 14px; height: 14px; border-radius: 50%;
+        background: #ef4444; border: 2px solid #1a1a1a;
+        animation: nc-pulse 1.5s infinite;
+      }
+      #nomad-chat-toggle.open::after { display: none; }
+      @keyframes nc-pulse { 0%,100%{transform:scale(1);opacity:1} 50%{transform:scale(1.2);opacity:0.8} }
+
+      #nc-teaser {
+        position: fixed; bottom: 90px; right: 24px;
+        background: var(--warm); border: 1px solid var(--border);
+        border-radius: 12px 12px 0 12px;
+        padding: 10px 14px; font-size: 13px; color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        box-shadow: 0 4px 16px rgba(0,0,0,0.3);
+        z-index: 9997; max-width: 220px; cursor: pointer;
+        animation: nc-pop 0.3s ease-out;
+      }
+      #nc-teaser strong { color: var(--gold); display: block; margin-bottom: 2px; font-size: 11px; letter-spacing: 0.07em; }
+      @keyframes nc-pop { 0%{transform:scale(0.8) translateY(10px);opacity:0} 100%{transform:scale(1) translateY(0);opacity:1} }
+
+      #nomad-chat-box {
+        position: fixed; bottom: 90px; right: 24px; width: 360px; max-height: 560px;
+        border-radius: 4px; overflow: hidden; border: 1px solid var(--border);
+        box-shadow: 0 16px 48px rgba(0,0,0,0.5); display: flex; flex-direction: column;
+        z-index: 9998; background: var(--dark);
+        transform: scale(0.93) translateY(12px); opacity: 0; pointer-events: none;
+        transition: opacity 0.25s, transform 0.25s;
+      }
+      #nomad-chat-box.open { opacity: 1; transform: scale(1) translateY(0); pointer-events: all; }
+
+      #nc-header { background: var(--warm); padding: 13px 16px; display: flex; align-items: center; gap: 10px; border-bottom: 1px solid var(--border); flex-shrink: 0; }
+      #nc-header .nc-avatar { width: 36px; height: 36px; border-radius: 50%; background: var(--gold); display: flex; align-items: center; justify-content: center; flex-shrink: 0; overflow: hidden; font-size: 12px; font-weight: 700; color: var(--dark); }
+      #nc-header .nc-avatar img { width: 100%; height: 100%; object-fit: cover; }
+      #nc-header .nc-name { font-size: 13px; font-weight: 500; color: var(--cream); letter-spacing: 0.05em; }
+      #nc-header .nc-status { font-size: 11px; color: #4ade80; display: flex; align-items: center; gap: 4px; margin-top: 2px; }
+      #nc-header .nc-status::before { content: ''; width: 6px; height: 6px; border-radius: 50%; background: #4ade80; display: inline-block; }
+
+      #nc-messages { flex: 1; overflow-y: auto; padding: 14px; display: flex; flex-direction: column; gap: 10px; background: #0e0c0a; min-height: 260px; }
+      #nc-messages::-webkit-scrollbar { width: 4px; }
+      #nc-messages::-webkit-scrollbar-thumb { background: var(--border); border-radius: 2px; }
+
+      .nc-msg { max-width: 84%; padding: 9px 13px; font-size: 13px; line-height: 1.55; border-radius: 16px; word-break: break-word; font-family: "DM Sans", sans-serif; font-weight: 300; }
+      .nc-msg.bot { background: var(--warm); border: 1px solid var(--border); color: var(--cream); border-bottom-left-radius: 4px; align-self: flex-start; }
+      .nc-msg.user { background: var(--gold); color: var(--dark); border-bottom-right-radius: 4px; align-self: flex-end; font-weight: 400; }
+      .nc-typing { display: flex; gap: 4px; padding: 12px 14px; }
+      .nc-dot { width: 7px; height: 7px; border-radius: 50%; background: var(--muted); animation: nc-bounce 1.2s infinite; }
+      .nc-dot:nth-child(2){animation-delay:0.2s} .nc-dot:nth-child(3){animation-delay:0.4s}
+      @keyframes nc-bounce{0%,60%,100%{transform:translateY(0)}30%{transform:translateY(-5px)}}
+
+      #nc-qr { display: flex; flex-wrap: wrap; gap: 6px; padding: 0 14px 10px; background: #0e0c0a; }
+      .nc-qr-btn { font-size: 11.5px; padding: 5px 12px; border-radius: 20px; border: 1px solid var(--border); background: transparent; color: var(--gold); cursor: pointer; transition: all 0.15s; font-family: "DM Sans", sans-serif; }
+      .nc-qr-btn:hover { background: var(--border); color: var(--cream); }
+
+      #nc-input-area { display: flex; align-items: center; gap: 8px; padding: 10px 12px; border-top: 1px solid var(--border); background: var(--warm); flex-shrink: 0; }
+      #nc-input { flex: 1; border: none; background: transparent; font-size: 13px; color: var(--cream); outline: none; font-family: "DM Sans", sans-serif; font-weight: 300; }
+      #nc-input::placeholder { color: var(--muted); }
+      #nc-send { background: var(--gold); border: none; border-radius: 50%; width: 32px; height: 32px; display: flex; align-items: center; justify-content: center; cursor: pointer; flex-shrink: 0; }
+      #nc-send svg { width: 14px; height: 14px; fill: var(--dark); }
+      .nc-wa-btn { display: inline-flex; align-items: center; gap: 7px; background: #25D366; color: #fff; border: none; border-radius: 20px; padding: 8px 15px; font-size: 12.5px; font-weight: 500; cursor: pointer; margin-top: 8px; font-family: "DM Sans", sans-serif; text-decoration: none; }
+
+      @media(max-width:480px){
+        #nomad-chat-box{width:calc(100vw - 24px);right:12px;bottom:80px;}
+        #nomad-chat-toggle{right:12px;bottom:16px;}
+        #nc-teaser{right:12px;}
+      }
+    </style>
+
+    <button id="nomad-chat-toggle" onclick="ncToggle()" aria-label="Chat with us">
+      <svg class="nc-chat" viewBox="0 0 24 24"><path d="M20 2H4C2.9 2 2 2.9 2 4v18l4-4h14c1.1 0 2-.9 2-2V4c0-1.1-.9-2-2-2zm-2 12H6v-2h12v2zm0-3H6V9h12v2zm0-3H6V6h12v2z"/></svg>
+      <svg class="nc-close" viewBox="0 0 24 24"><path d="M19 6.41L17.59 5 12 10.59 6.41 5 5 6.41 10.59 12 5 17.59 6.41 19 12 13.41 17.59 19 19 17.59 13.41 12z"/></svg>
+    </button>
+
+    <div id="nomad-chat-box">
+      <div id="nc-header">
+        <div class="nc-avatar">
+          <img src="nomad-logo.png" alt="NS" onerror="this.style.display='none';this.parentElement.innerText='NS'" />
+        </div>
+        <div>
+          <div class="nc-name">NOMAD STUDIO BALI</div>
+          <div class="nc-status">Online 24/7</div>
+        </div>
+      </div>
+      <div id="nc-messages"></div>
+      <div id="nc-qr"></div>
+      <div id="nc-input-area">
+        <input type="text" id="nc-input" placeholder="Ask us anything..." />
+        <button id="nc-send" onclick="ncSend()" aria-label="Send">
+          <svg viewBox="0 0 24 24"><path d="M2.01 21L23 12 2.01 3 2 10l15 2-15 2z"/></svg>
+        </button>
+      </div>
+    </div>
+
+    <script>
+    (function(){
+      const WORKER_URL = "https://nomadstudiobali.com/.netlify/functions/chat";
+      const WA_NUMBER = "6282168889585";
+
+      const SYSTEM = `You are Nomad, the AI assistant for Nomad Studio Bali — a professional moving studio that sets up at clients' villas or homes across Bali.
+
+SERVICES & EXACT PRICING:
+
+Podcast / Interview (setup for two speakers):
+- Podcast Starter: IDR 4,990K — 3-hour session, ~2 hrs production time
+- Podcast Standard: IDR 7,490K — 5-hour session, ~4 hrs production time
+- Podcast Pro: IDR 9,490K — 8-hour session, ~7 hrs production time (Most Popular)
+All podcast packages include: Three Sony 4K (10-bit) camera setup, professional studio lighting kit, two RODE podcast microphone, Creative Director and camera operator, setup and packdown included.
+Podcast Add-ons: Extra time 30 min +550K, Additional speaker (camera & mic included) +1,500K, Night surcharge (after 18.00) +500K flat.
+
+VSL / Solo Video:
+- VSL Starter: IDR 3,799K — 3-hour session, ~2 hrs production time, raw footage
+- VSL Standard: IDR 5,790K — 5-hour session, ~4 hrs production time, raw footage (Most Popular)
+- VSL Full Day: IDR 6,899K — 8-hour session, ~7 hrs production time, raw footage
+All VSL packages include: 2-camera setup, professional LED lighting, professional microphone, 2-person crew, setup & packdown, raw footage delivered.
+VSL Add-ons: Extra time 30 min +550K, Night surcharge (after 18.00) +500K flat.
+
+Areas covered: Canggu, Seminyak, Kuta, Ubud, Uluwatu, Sanur. Travel surcharge may apply for distant areas.
+
+Personality: warm, professional, helpful. Reply in the same language the user writes in. Max 3 sentences per response.
+
+IMPORTANT FLOW:
+1. Start by greeting warmly and asking what type of content they want to create
+2. Show quick reply options right away: Podcast & Interview, VSL / Solo Video, Other Production
+3. If they choose "Other Production" — say something like "To make sure we find the perfect setup for you, let me connect you with our team directly!" then collect their info
+4. After understanding their need, recommend the right package with price
+5. Then collect info ONE BY ONE: Full Name → WhatsApp → Email → Event date → Location in Bali
+6. After all 5 collected, thank them and say team will follow up via WhatsApp
+
+Never ask all questions at once. Show the 3 service options as quick replies in your FIRST message.`;
+
+      let history = [], leadData = {nama:null,wa:null,email:null,tanggal:null,lokasi:null};
+      let waitFor = null, isOpen = false, started = false;
+
+      function ncPlayPop() {
+        try {
+          const ctx = new (window.AudioContext || window.webkitAudioContext)();
+          const o = ctx.createOscillator();
+          const g = ctx.createGain();
+          o.connect(g); g.connect(ctx.destination);
+          o.frequency.setValueAtTime(600, ctx.currentTime);
+          o.frequency.exponentialRampToValueAtTime(900, ctx.currentTime + 0.08);
+          g.gain.setValueAtTime(0.3, ctx.currentTime);
+          g.gain.exponentialRampToValueAtTime(0.001, ctx.currentTime + 0.2);
+          o.start(ctx.currentTime); o.stop(ctx.currentTime + 0.2);
+        } catch(e){}
+      }
+
+      // Teaser bubble after 1.5s
+      setTimeout(function(){
+        const t = document.createElement('div');
+        t.id = 'nc-teaser';
+        t.innerHTML = '<strong>👋 NOMAD STUDIO BALI</strong>Need a pro studio at your villa? We come to you anywhere in Bali 🎙';
+        t.onclick = function(){ ncToggle(); };
+        document.body.appendChild(t);
+        ncPlayPop();
+      }, 1500);
+
+      // Auto-open after 3s
+      setTimeout(function(){
+        const t = document.getElementById('nc-teaser');
+        if(t) t.remove();
+        if(!isOpen){ ncPlayPop(); ncToggle(); }
+      }, 3000);
+
+      window.ncToggle = function(){
+        isOpen = !isOpen;
+        const t = document.getElementById('nc-teaser');
+        if(t) t.remove();
+        document.getElementById('nomad-chat-box').classList.toggle('open', isOpen);
+        document.getElementById('nomad-chat-toggle').classList.toggle('open', isOpen);
+        if(isOpen && !started){ started = true; ncCall("Hi!"); }
+      };
+
+      function ncAdd(text, role, html){
+        const m = document.getElementById('nc-messages');
+        const d = document.createElement('div');
+        d.className = 'nc-msg '+(role==='user'?'user':'bot');
+        if(html) d.innerHTML=text; else d.textContent=text;
+        m.appendChild(d); m.scrollTop=m.scrollHeight;
+      }
+
+      function ncTyping(show){
+        if(show){
+          const m=document.getElementById('nc-messages');
+          const d=document.createElement('div');
+          d.className='nc-msg bot nc-typing'; d.id='nc-typing';
+          d.innerHTML='<div class="nc-dot"></div><div class="nc-dot"></div><div class="nc-dot"></div>';
+          m.appendChild(d); m.scrollTop=m.scrollHeight;
+        } else { const t=document.getElementById('nc-typing'); if(t) t.remove(); }
+      }
+
+      function ncQR(opts){
+        const q=document.getElementById('nc-qr'); q.innerHTML='';
+        opts.forEach(function(o){
+          const b=document.createElement('button'); b.className='nc-qr-btn';
+          b.textContent=o; b.onclick=function(){ncSend(o);}; q.appendChild(b);
+        });
+      }
+
+      function ncWALink(){
+        const t=encodeURIComponent('Hi Nomad Studio Bali! 👋\n\nI\'m interested in booking a studio session.\n\n📋 My details:\n👤 Name: '+(leadData.nama||'-')+'\n📱 WhatsApp: '+(leadData.wa||'-')+'\n📧 Email: '+(leadData.email||'-')+'\n📅 Date: '+(leadData.tanggal||'-')+'\n📍 Location: '+(leadData.lokasi||'-'));
+        return 'https://wa.me/'+WA_NUMBER+'?text='+t;
+      }
+
+      async function ncCall(msg){
+        history.push({role:'user',content:msg});
+        ncTyping(true);
+        try{
+          const r=await fetch(WORKER_URL,{
+            method:'POST',
+            headers:{'Content-Type':'application/json'},
+            body:JSON.stringify({model:'claude-haiku-4-5-20251001',max_tokens:400,system:SYSTEM,messages:history})
+          });
+          const text=await r.text();
+          const d=JSON.parse(text);
+          const reply=(d.content&&d.content[0]&&d.content[0].text)||'Sorry, something went wrong. Please try again!';
+          history.push({role:'assistant',content:reply});
+          ncTyping(false); ncAdd(reply,'bot');
+
+          const low=reply.toLowerCase();
+          const isFirstMsg = history.length <= 2;
+
+          // Show service options on first bot response
+          if(isFirstMsg){
+            ncQR(['🎙 Podcast & Interview','🎬 VSL / Solo Video','🎛 Other Production']);
+          } else if(!leadData.nama&&(low.includes('name')||low.includes('nama'))) { waitFor='nama'; ncQR([]); }
+          else if(!leadData.wa&&(low.includes('whatsapp')||low.includes('number')||low.includes('phone')||low.includes('nomor'))) { waitFor='wa'; ncQR([]); }
+          else if(!leadData.email&&low.includes('email')) { waitFor='email'; ncQR([]); }
+          else if(!leadData.tanggal&&(low.includes('date')||low.includes('when')||low.includes('tanggal')||low.includes('kapan'))) { waitFor='tanggal'; ncQR([]); }
+          else if(!leadData.lokasi&&(low.includes('location')||low.includes('area')||low.includes('lokasi')||low.includes('villa')||low.includes('address'))) { waitFor='lokasi'; ncQR([]); }
+          else { ncQR([]); }
+
+          const done=leadData.nama&&leadData.wa&&leadData.email&&leadData.tanggal&&leadData.lokasi;
+          if(done){
+            setTimeout(function(){
+              ncAdd('All set! 🎉 Our team will reach out to you shortly via WhatsApp.<br><br><a class="nc-wa-btn" href="'+ncWALink()+'" target="_blank"><svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>Chat on WhatsApp</a>','bot',true);
+              ncQR([]);
+            },500);
+          }
+        } catch(e){
+          ncTyping(false);
+          ncAdd('Connection issue, please try again! 🙏','bot');
+        }
+      }
+
+      window.ncSend=function(preset){
+        const inp=document.getElementById('nc-input');
+        const msg=preset||inp.value.trim(); if(!msg) return;
+        inp.value=''; document.getElementById('nc-qr').innerHTML='';
+        ncAdd(msg,'user');
+        if(waitFor==='nama'){leadData.nama=msg;waitFor=null;}
+        else if(waitFor==='wa'){leadData.wa=msg;waitFor=null;}
+        else if(waitFor==='email'){leadData.email=msg;waitFor=null;}
+        else if(waitFor==='tanggal'){leadData.tanggal=msg;waitFor=null;}
+        else if(waitFor==='lokasi'){leadData.lokasi=msg;waitFor=null;}
+        ncCall(msg);
+      };
+
+      document.getElementById('nc-input').addEventListener('keydown',function(e){if(e.key==='Enter') window.ncSend();});
+    })();
+    </script>
+    <!-- ===== END NOMAD STUDIO AI CHATBOT ===== -->
+
+    <script>
+      // Pricing tabs
+      function switchTab(tab, btn) {
+        document
+          .querySelectorAll(".pricing-tab")
+          .forEach((t) => t.classList.remove("active"));
+        document
+          .querySelectorAll(".pricing-panel")
+          .forEach((p) => p.classList.remove("active"));
+        document.getElementById("tab-" + tab).classList.add("active");
+        btn.classList.add("active");
+      }
+
+      // Hamburger menu
+      const hamburger = document.getElementById("hamburger");
+      const navLinks = document.getElementById("nav-links");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        navLinks.classList.toggle("open");
+      });
+
+      // Close menu when a nav link is clicked
+      navLinks.querySelectorAll("a").forEach((link) => {
+        link.addEventListener("click", () => {
+          hamburger.classList.remove("open");
+          navLinks.classList.remove("open");
+        });
+      });
+
+      // Close menu when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!hamburger.contains(e.target) && !navLinks.contains(e.target)) {
+          hamburger.classList.remove("open");
+          navLinks.classList.remove("open");
+        }
+      });
+    </script>
+  </body>
+</html>

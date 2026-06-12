@@ -1,0 +1,789 @@
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Booking Policy — Nomad Studio Bali</title>
+    <link
+      href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:ital,wght@0,300;0,400;0,500;1,300&family=DM+Serif+Display:ital@0;1&display=swap"
+      rel="stylesheet"
+    />
+    <style>
+      :root {
+        --cream: #f5f0e8;
+        --dark: #141210;
+        --warm: #1c1915;
+        --gold: #c8a96e;
+        --gold-light: #e8c98a;
+        --muted: #8a8070;
+        --border: rgba(200, 169, 110, 0.2);
+      }
+      *,
+      *::before,
+      *::after {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+      }
+      html {
+        scroll-behavior: smooth;
+      }
+      body {
+        background: var(--dark);
+        color: var(--cream);
+        font-family: "DM Sans", sans-serif;
+        font-weight: 300;
+        line-height: 1.6;
+      }
+
+      /* NAV */
+      nav {
+        position: fixed;
+        top: 0;
+        left: 0;
+        right: 0;
+        z-index: 100;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        padding: 1rem 4rem;
+        border-bottom: 1px solid var(--border);
+        background: rgba(20, 18, 16, 0.92);
+        backdrop-filter: blur(12px);
+        height: 72px;
+      }
+      .nav-logo {
+        display: flex;
+        align-items: center;
+        text-decoration: none;
+      }
+      .nav-logo img {
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
+      }
+      .nav-logo-text {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1.3rem;
+        letter-spacing: 0.12em;
+        color: var(--cream);
+      }
+      .nav-logo-text span {
+        color: var(--gold);
+      }
+      .nav-back {
+        font-size: 0.78rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        color: var(--muted);
+        text-decoration: none;
+        transition: color 0.2s;
+      }
+      .nav-back:hover {
+        color: var(--gold);
+      }
+      .nav-cta {
+        background: var(--gold);
+        color: var(--dark);
+        padding: 0.6rem 1.5rem;
+        font-size: 0.75rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-decoration: none;
+        transition: background 0.2s;
+      }
+      .nav-cta:hover {
+        background: var(--gold-light);
+      }
+
+      /* HAMBURGER */
+      .nav-hamburger {
+        display: none;
+        flex-direction: column;
+        justify-content: center;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 4px;
+        z-index: 101;
+      }
+      .nav-hamburger span {
+        display: block;
+        width: 24px;
+        height: 2px;
+        background: var(--cream);
+        transition: all 0.3s ease;
+        transform-origin: center;
+      }
+      .nav-hamburger.open span:nth-child(1) {
+        transform: translateY(7px) rotate(45deg);
+      }
+      .nav-hamburger.open span:nth-child(2) {
+        opacity: 0;
+        transform: scaleX(0);
+      }
+      .nav-hamburger.open span:nth-child(3) {
+        transform: translateY(-7px) rotate(-45deg);
+      }
+
+      .policy-hero {
+        padding: 10rem 4rem 4rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .policy-tag {
+        font-size: 0.65rem;
+        letter-spacing: 0.25em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 1.2rem;
+        display: block;
+      }
+      .policy-title {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: clamp(3rem, 6vw, 6rem);
+        line-height: 0.95;
+        margin-bottom: 1.5rem;
+      }
+      .policy-title em {
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        color: var(--gold);
+      }
+      .policy-intro {
+        color: var(--muted);
+        font-size: 1rem;
+        max-width: 600px;
+        line-height: 1.7;
+      }
+
+      .policy-body {
+        max-width: 860px;
+        margin: 0 auto;
+        padding: 5rem 4rem;
+      }
+      .policy-section {
+        margin-bottom: 4rem;
+        padding-bottom: 4rem;
+        border-bottom: 1px solid var(--border);
+      }
+      .policy-section:last-child {
+        border-bottom: none;
+      }
+      .policy-section-num {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 0.85rem;
+        letter-spacing: 0.2em;
+        color: var(--gold);
+        margin-bottom: 0.8rem;
+        display: block;
+      }
+      .policy-section h2 {
+        font-family: "DM Serif Display", serif;
+        font-size: 1.8rem;
+        font-style: italic;
+        color: var(--cream);
+        margin-bottom: 1.5rem;
+        line-height: 1.2;
+      }
+      .policy-section p {
+        color: var(--muted);
+        font-size: 0.95rem;
+        line-height: 1.75;
+        margin-bottom: 1rem;
+      }
+      .policy-section p:last-child {
+        margin-bottom: 0;
+      }
+      .policy-section p strong {
+        color: var(--cream);
+        font-weight: 500;
+      }
+
+      .policy-rule-box {
+        background: var(--warm);
+        border: 1px solid var(--border);
+        border-left: 3px solid var(--gold);
+        padding: 1.5rem 2rem;
+        margin: 1.5rem 0;
+      }
+      .policy-rule-box p {
+        color: var(--cream);
+        font-size: 0.9rem;
+        margin-bottom: 0;
+      }
+      .policy-rule-box p + p {
+        margin-top: 0.6rem;
+        color: var(--muted);
+        font-size: 0.85rem;
+      }
+
+      .policy-table {
+        width: 100%;
+        border-collapse: collapse;
+        margin: 1.5rem 0;
+      }
+      .policy-table th {
+        font-size: 0.7rem;
+        letter-spacing: 0.15em;
+        text-transform: uppercase;
+        color: var(--gold);
+        font-weight: 400;
+        padding: 0.7rem 1rem;
+        text-align: left;
+        border-bottom: 1px solid var(--border);
+      }
+      .policy-table td {
+        font-size: 0.88rem;
+        color: var(--muted);
+        padding: 0.85rem 1rem;
+        border-bottom: 1px solid rgba(200, 169, 110, 0.08);
+        vertical-align: top;
+      }
+      .policy-table td:first-child {
+        color: var(--cream);
+        font-weight: 400;
+        white-space: nowrap;
+      }
+      .policy-table tr:last-child td {
+        border-bottom: none;
+      }
+
+      .policy-list {
+        list-style: none;
+        display: flex;
+        flex-direction: column;
+        gap: 0.7rem;
+        margin: 1rem 0;
+      }
+      .policy-list li {
+        font-size: 0.9rem;
+        color: var(--muted);
+        padding-left: 1.4rem;
+        position: relative;
+        line-height: 1.6;
+      }
+      .policy-list li::before {
+        content: "—";
+        position: absolute;
+        left: 0;
+        color: var(--gold);
+      }
+      .policy-list li strong {
+        color: var(--cream);
+        font-weight: 500;
+      }
+
+      .policy-cta {
+        background: var(--warm);
+        border: 1px solid var(--border);
+        padding: 3rem 4rem;
+        text-align: center;
+        margin-top: 3rem;
+      }
+      .policy-cta h3 {
+        font-family: "DM Serif Display", serif;
+        font-style: italic;
+        font-size: 1.8rem;
+        margin-bottom: 0.8rem;
+      }
+      .policy-cta p {
+        color: var(--muted);
+        margin-bottom: 2rem;
+        font-size: 0.9rem;
+      }
+      .btn-primary {
+        background: var(--gold);
+        color: var(--dark);
+        padding: 1rem 2.2rem;
+        font-size: 0.8rem;
+        letter-spacing: 0.1em;
+        text-transform: uppercase;
+        font-weight: 500;
+        text-decoration: none;
+        display: inline-block;
+        transition: all 0.2s;
+      }
+      .btn-primary:hover {
+        background: var(--gold-light);
+      }
+
+      footer {
+        border-top: 1px solid var(--border);
+        padding: 2.5rem 4rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        height: 72px;
+      }
+      .footer-brand {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      .footer-brand img {
+        height: 100px;
+        width: 100px;
+        object-fit: contain;
+      }
+      .footer-logo-text {
+        font-family: "Bebas Neue", sans-serif;
+        font-size: 1rem;
+        letter-spacing: 0.12em;
+        color: var(--cream);
+      }
+      .footer-logo-text span {
+        color: var(--gold);
+      }
+      .footer-copy {
+        font-size: 0.75rem;
+        color: var(--muted);
+      }
+
+      /* MOBILE */
+      @media (max-width: 768px) {
+        nav {
+          padding: 1rem 1.5rem;
+        }
+
+        /* Hide back link inline, show as dropdown via hamburger */
+        .nav-back {
+          display: none;
+        }
+        .nav-hamburger {
+          display: flex;
+        }
+
+        /* Mobile nav open state — matches index.html pattern */
+        .nav-back.open {
+          display: block;
+          position: fixed;
+          top: 61px;
+          left: 0;
+          right: 0;
+          background: rgba(20, 18, 16, 0.97);
+          backdrop-filter: blur(12px);
+          padding: 1rem 1.5rem;
+          border-bottom: 1px solid var(--border);
+          z-index: 99;
+          font-size: 0.85rem;
+          color: var(--cream);
+          letter-spacing: 0.1em;
+          text-transform: uppercase;
+          text-decoration: none;
+        }
+
+        .policy-hero {
+          padding: 8rem 1.5rem 3rem;
+        }
+        .policy-body {
+          padding: 3rem 1.5rem;
+        }
+        .policy-cta {
+          padding: 2rem 1.5rem;
+        }
+        footer {
+          flex-direction: column;
+          gap: 1rem;
+          text-align: center;
+          padding: 2rem 1.5rem;
+        }
+      }
+    </style>
+  </head>
+  <body>
+    <nav>
+      <a class="nav-logo" href="index.html">
+        <img src="nomad-logo.png" alt="Nomad Studio Bali Logo" />
+        <span class="nav-logo-text">NOMAD <span>STUDIO</span> BALI</span>
+      </a>
+      <a class="nav-back" id="nav-back" href="index.html">← Back to Home</a>
+      <a class="nav-cta" href="https://wa.me/6282168889585" target="_blank"
+        >Book Now</a
+      >
+      <button class="nav-hamburger" id="hamburger" aria-label="Toggle menu">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </nav>
+
+    <div class="policy-hero">
+      <span class="policy-tag">Terms of Service</span>
+      <h1 class="policy-title">Booking<br /><em>Policy</em></h1>
+      <p class="policy-intro">
+        We believe great working relationships start with clarity. This policy
+        covers everything you need to know about how sessions are structured,
+        what's included, and what happens in edge cases — so there are zero
+        surprises on shoot day.
+      </p>
+    </div>
+
+    <div class="policy-body">
+      <!-- 1. SESSION TIME -->
+      <div class="policy-section">
+        <span class="policy-section-num">01 — Session Structure</span>
+        <h2>What "Session Time" Means</h2>
+        <p>
+          Your booked session time is the
+          <strong>total time our team is at your location</strong> — from
+          arrival to packdown. It is not pure shooting time.
+        </p>
+        <p>
+          All sessions include professional setup and packdown, which is handled
+          entirely by our team. You don't need to do anything — just be ready
+          when we tell you the studio is live.
+        </p>
+
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Session</th>
+              <th>Setup & Packdown</th>
+              <th>Production Time</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>3-Hour Session</td>
+              <td>~90 minutes</td>
+              <td>~1.5 hours</td>
+            </tr>
+            <tr>
+              <td>5-Hour Session</td>
+              <td>~90 minutes</td>
+              <td>~3.5 hours</td>
+            </tr>
+            <tr>
+              <td>8-Hour Session (Full Day)</td>
+              <td>~90–120 minutes</td>
+              <td>~6 hours</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <div class="policy-rule-box">
+          <p>
+            Setup and packdown time is non-negotiable — it's how we guarantee
+            broadcast-quality results every session.
+          </p>
+          <p>
+            If you'd like more pure production time, we recommend upgrading to
+            the next session length.
+          </p>
+        </div>
+      </div>
+
+      <!-- 2. BOOKING & PAYMENT -->
+      <div class="policy-section">
+        <span class="policy-section-num">02 — Booking & Payment</span>
+        <h2>Confirming Your Session</h2>
+        <p>
+          A session is only confirmed once we receive a
+          <strong>50% deposit</strong>. Until payment is received, your date and
+          time slot remains unconfirmed and may be offered to other clients.
+        </p>
+        <ul class="policy-list">
+          <li>
+            <strong>Deposit:</strong> 50% of total session price, paid at
+            booking
+          </li>
+          <li>
+            <strong>Remaining balance:</strong> Due on the day of the session,
+            before we begin
+          </li>
+          <li>
+            <strong>Payment methods:</strong> Bank transfer (BCA/Mandiri),
+            GoPay, or cash (IDR)
+          </li>
+          <li>
+            <strong>Invoice:</strong> Sent via WhatsApp upon booking
+            confirmation
+          </li>
+        </ul>
+      </div>
+
+      <!-- 3. CANCELLATION -->
+      <div class="policy-section">
+        <span class="policy-section-num">03 — Cancellation & Rescheduling</span>
+        <h2>Changes to Your Booking</h2>
+        <p>
+          We understand plans change. Here's our cancellation and rescheduling
+          policy:
+        </p>
+
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Notice Given</th>
+              <th>Deposit</th>
+              <th>Rescheduling</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>7+ days before</td>
+              <td>Full refund</td>
+              <td>Free, subject to availability</td>
+            </tr>
+            <tr>
+              <td>3–6 days before</td>
+              <td>50% refund</td>
+              <td>Free, subject to availability</td>
+            </tr>
+            <tr>
+              <td>Less than 3 days</td>
+              <td>Non-refundable</td>
+              <td>Rescheduling fee applies</td>
+            </tr>
+            <tr>
+              <td>No-show / same day</td>
+              <td>Non-refundable</td>
+              <td>Full session fee applies</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <p>
+          To cancel or reschedule, contact us via WhatsApp. All changes must be
+          confirmed in writing.
+        </p>
+      </div>
+
+      <!-- 4. UNUSED TIME -->
+      <div class="policy-section">
+        <span class="policy-section-num">04 — Unused Session Time</span>
+        <h2>What Happens If You Finish Early</h2>
+        <p>
+          If your recording wraps before the session ends,
+          <strong>unused time cannot be transferred or refunded</strong>. When
+          you book a session, we reserve that entire time block exclusively for
+          you — turning away other clients for that slot.
+        </p>
+
+        <div class="policy-rule-box">
+          <p>Unused time is non-transferable and non-refundable.</p>
+          <p>
+            Remaining on-site time can still be used: reviewing footage
+            together, discussing edits, reshooting scenes, or planning your next
+            session.
+          </p>
+        </div>
+      </div>
+
+      <!-- 5. OVERTIME -->
+      <div class="policy-section">
+        <span class="policy-section-num">05 — Overtime</span>
+        <h2>Running Beyond Your Session</h2>
+        <p>
+          We will always give you a <strong>15-minute heads-up</strong> before
+          your session ends so you can decide whether to continue.
+        </p>
+
+        <table class="policy-table">
+          <thead>
+            <tr>
+              <th>Overtime Duration</th>
+              <th>Charge</th>
+            </tr>
+          </thead>
+          <tbody>
+            <tr>
+              <td>1–60 minutes</td>
+              <td>IDR 600,000 (1 full hour)</td>
+            </tr>
+            <tr>
+              <td>61–90 minutes</td>
+              <td>IDR 900,000 (1.5 hours)</td>
+            </tr>
+            <tr>
+              <td>91–120 minutes</td>
+              <td>IDR 1,200,000 (2 hours)</td>
+            </tr>
+          </tbody>
+        </table>
+
+        <ul class="policy-list">
+          <li>
+            Overtime is charged in <strong>30-minute increments</strong> after
+            the first hour
+          </li>
+          <li>Minimum overtime charge is <strong>1 full hour</strong></li>
+          <li>
+            Overtime is subject to team availability — not always possible to
+            extend
+          </li>
+          <li>
+            Overtime payment is due on the day, in addition to your session
+            balance
+          </li>
+        </ul>
+      </div>
+
+      <!-- 6. NIGHT SURCHARGE -->
+      <div class="policy-section">
+        <span class="policy-section-num">06 — Night Surcharge</span>
+        <h2>Evening Sessions After 18.00</h2>
+        <p>
+          A flat surcharge of <strong>IDR 400,000</strong> applies to any
+          session that continues past 18.00 WIB. This covers the additional
+          logistics and time commitment for our team for evening work.
+        </p>
+
+        <div class="policy-rule-box">
+          <p>
+            Night surcharge: IDR 400,000 flat — applies when any part of your
+            session runs past 18.00.
+          </p>
+          <p>
+            This is always disclosed at booking. It will never be added as a
+            surprise at the end of a session.
+          </p>
+        </div>
+      </div>
+
+      <!-- 7. LUNCH BREAK -->
+      <div class="policy-section">
+        <span class="policy-section-num">07 — Lunch Break</span>
+        <h2>Breaks During Long Sessions</h2>
+        <p>
+          For sessions of <strong>8 hours (Full Day)</strong>, a
+          <strong>30-minute lunch break</strong> is included and does not count
+          toward production time. This break is for both the client and crew.
+        </p>
+        <p>
+          For sessions of 5 hours or less, no mandatory break is required. If a
+          break is requested mid-session by the client, it will be counted as
+          session time.
+        </p>
+      </div>
+
+      <!-- 8. CLIENT RESPONSIBILITIES -->
+      <div class="policy-section">
+        <span class="policy-section-num">08 — Client Responsibilities</span>
+        <h2>What We Need From You</h2>
+        <ul class="policy-list">
+          <li>
+            <strong>Location access:</strong> Ensure our team can access the
+            shoot location on arrival — including parking, building access, and
+            any security requirements
+          </li>
+          <li>
+            <strong>Location readiness:</strong> The shoot space should be
+            cleared and reasonably ready before we arrive
+          </li>
+          <li>
+            <strong>Punctuality:</strong> If the client is late, the session
+            start time does not shift — session time begins at the agreed start
+            time
+          </li>
+          <li>
+            <strong>Content preparation:</strong> Have your scripts, talking
+            points, or content plan ready before the session. Time spent on
+            content prep during the session counts as session time
+          </li>
+          <li>
+            <strong>Internet (if needed):</strong> If streaming or live output
+            is required, the client is responsible for providing a stable
+            internet connection
+          </li>
+        </ul>
+      </div>
+
+      <!-- 9. TRAVEL -->
+      <div class="policy-section">
+        <span class="policy-section-num">09 — Travel & Location</span>
+        <h2>Where We Operate</h2>
+        <p>
+          We cover
+          <strong
+            >Canggu, Seminyak, Kuta, Legian, Denpasar, Sanur, Ubud, and
+            Uluwatu</strong
+          >
+          as standard service areas with no travel surcharge.
+        </p>
+        <p>
+          Locations outside these areas are available upon request. A travel
+          surcharge will be quoted at booking based on distance and logistics.
+        </p>
+        <ul class="policy-list">
+          <li>
+            Travel surcharge is always disclosed before booking confirmation
+          </li>
+          <li>
+            Remote or difficult-access locations may require additional time
+            added to the session
+          </li>
+        </ul>
+      </div>
+
+      <!-- 10. BY BOOKING -->
+      <div class="policy-section">
+        <span class="policy-section-num">10 — Agreement</span>
+        <h2>By Booking, You Agree</h2>
+        <p>
+          By paying the deposit and confirming a session with Nomad Studio Bali,
+          you confirm that you have read and agree to this Booking Policy in
+          full.
+        </p>
+        <p>
+          We send a copy of this policy with every booking confirmation. If you
+          have any questions before booking, we're happy to walk through
+          anything via WhatsApp.
+        </p>
+      </div>
+
+      <div class="policy-cta">
+        <h3>Ready to Book Your Session?</h3>
+        <p>
+          Message us on WhatsApp — we'll confirm availability and answer any
+          questions before you commit.
+        </p>
+        <a
+          class="btn-primary"
+          href="https://wa.me/6282168889585"
+          target="_blank"
+          >WhatsApp Us Now</a
+        >
+      </div>
+    </div>
+
+    <footer>
+      <div class="footer-brand">
+        <img src="nomad-logo.png" alt="Nomad Studio Bali" />
+        <span class="footer-logo-text">NOMAD <span>STUDIO</span> BALI</span>
+      </div>
+      <p class="footer-copy">
+        © 2026 Nomad Studio Bali ·
+        <a href="index.html" style="color: var(--gold); text-decoration: none"
+          >Back to Home</a
+        >
+      </p>
+    </footer>
+
+    <script>
+      const hamburger = document.getElementById("hamburger");
+      const navBack = document.getElementById("nav-back");
+
+      hamburger.addEventListener("click", () => {
+        hamburger.classList.toggle("open");
+        navBack.classList.toggle("open");
+      });
+
+      // Close when the back link is clicked (navigates away anyway, but clean)
+      navBack.addEventListener("click", () => {
+        hamburger.classList.remove("open");
+        navBack.classList.remove("open");
+      });
+
+      // Close when clicking outside
+      document.addEventListener("click", (e) => {
+        if (!hamburger.contains(e.target) && !navBack.contains(e.target)) {
+          hamburger.classList.remove("open");
+          navBack.classList.remove("open");
+        }
+      });
+    </script>
+  </body>
+</html>
